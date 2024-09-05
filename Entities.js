@@ -678,7 +678,10 @@ const Entities = class {
 			} else if (json.subclass == "AcDbModelerGeometry") {
 				if (!json.proprietary_data) json.proprietary_data = [];
 				json.proprietary_data.push(value);
-			} 
+			} else if (json.subclass == 'AcDbFcf') {
+				const regex = /(\\P|\\L|\{|\}|\\*\\*a\d+;|\\H\d+\.?\d*x;|\+\/\-|%%u|\\Fromanc\||\\f.*p\d+;|t\d+;|c\d+;|\\fFutura Md BT\||\\Fsimplex\||\\fitalic.*c.*\d+;|scale.*\d+:\d+)/gim;
+				json.text = value.replace(regex, "");
+			}
 		} else if (code == "2") {
 			if (json.subclass == "AcDbShape" || json.subclass == "AcDbMline" || json.subclass == "AcDbHatch") {
 				json.style_name = value;  
