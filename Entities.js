@@ -695,6 +695,8 @@ const Entities = class {
 				const temp = json.proprietary_data[json.proprietary_data.length - 1];
 				json.proprietary_data[json.proprietary_data.length - 1] = temp + value;
 			}
+		} else if (code == "5") {
+			json.handles = value;
 		} else if (code == "6") {
 			json.line_type = value;
 		} else if (code == "7") {
